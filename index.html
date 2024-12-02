@@ -1,186 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - Lucas Marsh</title>
-    <a href="https://github.com/lukron55" rel="me">github.com/lukron55</a>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DxCWokZZUvMvN/UFlBcvTe72HgEO58n+Hkv7LaE5zHUxRxVQz9N2zQZ6wt++WXqCkmUurJXAhQgZMaLTOakLhQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        @import url("https://www.nerdfonts.com/assets/css/webfont.css");
-
-        /* General page styling */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            color: #fff;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        /* Hide the IndieAuth link */
-        a[rel="me"] {
-            display: none;
-        }
-
-        /* Animated background gradient */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #74ebd5, #9face6, #f78ca0);
-            background-size: 300% 300%;
-            animation: gradientAnimation 10s ease infinite;
-            z-index: -1;
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        h1 {
-            margin-bottom: 0.5em;
-            font-size: 2.5em;
-        }
-
-        p {
-            font-size: 1.2em;
-            max-width: 600px;
-            line-height: 1.6;
-            margin: 0 1em;
-        }
-
-        /* Button container and styles */
-        .buttons {
-            margin-top: 1.5em;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1em;
-        }
-
-        .buttons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            padding: 0.8em 1.5em;
-            border-radius: 5px;
-            font-size: 1em;
-            background: #444; /* Default fallback background for buttons */
-            color: #FFF;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .buttons a:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Individual button colours */
-        .buttons a.discord {
-            background: #5865F2;
-        }
-
-        .buttons a.github {
-            background: #171515;
-        }
-
-        .buttons a.email {
-            background: #EA4335;
-        }
-
-        .buttons a.mastodon {
-            background: #6364FF;
-        }
-
-        /* Button icon styling */
-        .buttons a .icon {
-            margin-right: 0.5em;
-            font-size: 1.2em;
-        }
-
-        /* Mobile UI Improvements */
-        @media (max-width: 600px) {
-            .buttons {
-                flex-direction: column;
-                gap: 0.5em;
-                align-items: center; /* Center the buttons horizontally */
-            }
-
-            .buttons a {
-                width: 80%;
-                margin: 0 auto;
-            }
-        }
-
-        /* Webring styling */
-        .webring {
-            margin-top: 1.5em;
-            font-size: 1em;
-            text-align: center;
-            color: #FFF;
-        }
-
-        .webring a {
-            text-decoration: none;
-            color: #FFF;
-            padding: 0.3em 0.6em;
-            background-color: #444;
-            border-radius: 5px;
-            font-size: 0.9em;
-            transition: background-color 0.3s ease;
-        }
-
-        .webring a:hover {
-            background-color: #777;
-        }
-
-        .webring a:active {
-            background-color: #333;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Web Terminal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Hi, I'm Lucas Marsh!</h1>
-    <p>I'm a passionate tech enthusiast with interests in web development, Linux, gaming, and open-source projects. Let's connect!</p>
-    <div class="buttons">
-        <a href="https://discord.gg/lukron" class="discord" target="_blank">
-            <i class="nf nf-fa-discord icon"></i>Discord
-        </a>
-        <a href="https://github.com/lukron55" class="github" target="_blank">
-            <i class="nf nf-fa-github icon"></i>GitHub
-        </a>
-        <a href="mailto:lucas@lukron.xyz" class="email">
-            <i class="nf nf-fa-envelope icon"></i>Email
-        </a>
-        <a href="https://mastodon.social/@ylukron" class="mastodon" target="_blank">
-            <i class="nf nf-fa-mastodon icon"></i>Mastodon
-        </a>
-    </div>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
 
-    <!-- Webring section -->
-    <div class="webring">
-        <a href="https://fediring.net/previous?host=lukron.xyz">←</a>
-        <a href="https://fediring.net/">Fediring</a>
-        <a href="https://fediring.net/next?host=lukron.xyz">→</a>
+  <!-- Terminal -->
+  <div class="bg-black text-white p-6 rounded-lg w-full max-w-lg font-mono">
+    <div class="flex justify-between items-center">
+      <div class="flex space-x-2 text-red-500">
+        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+      </div>
+      <p class="text-sm">bash</p>
     </div>
-    <div class="webring">
-        <a href="https://xn--sr8hvo.ws/previous?host=lukron.xyz">←</a>
-        <a href="https://xn--sr8hvo.ws/">Indie Webring</a>
-        <a href="https://xn--sr8hvo.ws/next?host=lukron.xyz">→</a>
+    <div id="terminal-output" class="mt-4 overflow-y-auto max-h-96">
+      <!-- Initial prompt -->
+      <p class="text-green-400">$ cat lukron.txt</p>
+      <p class="text-white">Try these commands:</p>
+      <p class="text-white">about, discord, github, mastodon, email, linkedin, clear</p>
     </div>
+    <div class="mt-4">
+      <div class="flex">
+        <span class="text-green-400">$</span>
+        <input
+          id="terminal-input"
+          type="text"
+          placeholder="Type a command..."
+          class="bg-black text-white ml-2 flex-grow outline-none"
+        />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const terminalOutput = document.getElementById("terminal-output");
+      const terminalInput = document.getElementById("terminal-input");
+
+      // Commands and their outputs
+      const commands = {
+        "cat lukron.txt": [
+          "Try these commands:",
+          "about, discord, github, mastodon, email, linkedin, clear"
+        ],
+        about: [
+          "Hi! I'm Lucas Marsh, a tech enthusiast with a passion for creating interactive web experiences and coding projects."
+        ],
+        discord: [
+          "Join my Discord server: ",
+          "<a href='https://discord.gg/lukron' target='_blank' class='underline'>https://discord.gg/lukron</a>"
+        ],
+        github: [
+          "Check out my GitHub: ",
+          "<a href='https://github.com/lukron55' target='_blank' class='underline'>https://github.com/lukron55</a>"
+        ],
+        mastodon: [
+          "Find me on Mastodon: ",
+          "<a href='https://mastodon.social/@lukron' target='_blank' class='underline'>https://mastodon.social/@lukron</a>"
+        ],
+        email: [
+          "Email me at: ",
+          "<a href='mailto:lucas@lukron.xyz' class='underline'>lucas@lukron.xyz</a>"
+        ],
+        linkedin: [
+          "Connect with me on LinkedIn: ",
+          "<a href='https://linkedin.com/in/lucascmarsh' target='_blank' class='underline'>https://linkedin.com/in/lucascmarsh</a>"
+        ],
+        clear: []
+      };
+
+      terminalInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          const userInput = terminalInput.value.trim();
+          terminalInput.value = ""; // Clear the input field
+
+          if (userInput) {
+            // Add the user input to the terminal output
+            const userLine = document.createElement("p");
+            userLine.classList.add("text-green-400");
+            userLine.textContent = `$ ${userInput}`;
+            terminalOutput.appendChild(userLine);
+
+            // Handle valid commands
+            if (commands[userInput]) {
+              if (userInput === "clear") {
+                terminalOutput.innerHTML = ""; // Clear all terminal content
+              } else {
+                commands[userInput].forEach((line) => {
+                  const responseLine = document.createElement("p");
+                  responseLine.classList.add("text-white");
+                  responseLine.innerHTML = line; // Use innerHTML for clickable links
+                  terminalOutput.appendChild(responseLine);
+                });
+              }
+            } else {
+              // Handle invalid command
+              const responseLine = document.createElement("p");
+              responseLine.classList.add("text-white");
+              responseLine.textContent = `Command '${userInput}' not found`;
+              terminalOutput.appendChild(responseLine);
+            }
+
+            // Scroll to the bottom of the terminal
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+          }
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>

@@ -1,0 +1,178 @@
+﻿Diagnose log at 2024-11-30T23:06:00Z
+
+AppPath: /usr/bin/git-credential-manager
+InstallDir: /usr/lib/share/git-credential-manager-bin/
+Version: 2.6.0+3c28096588f549cb46f36b552390514356830abe
+
+------------
+Diagnostic: Environment
+Skipped: False
+Success: True
+Exception: None
+Log:
+OSType: Linux
+OSVersion: Arch Linux
+Reading environment variables... OK
+ Variables:
+WINDOWID=0
+SHELL=/usr/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/home/lukron/.local/share/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+XDG_DATA_DIRS=/home/lukron/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+COLORTERM=truecolor
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+HOME=/home/lukron
+XDG_SESSION_ID=2
+COLORFGBG=15;0
+XDG_CURRENT_DESKTOP=LXQt
+GTK_MODULES=canberra-gtk-module
+MOTD_SHOWN=pam
+XDG_SESSION_TYPE=x11
+PWD=/home/lukron/lukron55.github.io
+USER=lukron
+GTK_CSD=0
+LANGUAGE=
+QT_PLATFORM_PLUGIN=lxqt
+LXQT_SESSION_CONFIG=session
+LOGNAME=lukron
+DESKTOP_SESSION=lxqt
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session1
+LANG=en_GB.UTF-8
+XDG_SEAT=seat0
+XDG_CACHE_HOME=/home/lukron/.cache
+XDG_SESSION_CLASS=user
+XDG_CONFIG_HOME=/home/lukron/.config
+MAIL=/var/spool/mail/lukron
+XDG_RUNTIME_DIR=/run/user/1000
+XDG_SESSION_DESKTOP=LXQt
+SHLVL=1
+TERM=xterm-256color
+GTK_OVERLAY_SCROLLING=0
+OLDPWD=/home/lukron
+XDG_CONFIG_DIRS=/etc:/etc/xdg:/usr/share
+XAUTHORITY=/tmp/xauth_xrHQKB
+XDG_VTNR=2
+DEBUGINFOD_URLS=https://debuginfod.archlinux.org 
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+QT_QPA_PLATFORMTHEME=lxqt
+XDG_DATA_HOME=/home/lukron/.local/share
+GIT_TRACE2_PARENT_SID=41edf82b-c400-4463-9127-f8b3e240348c
+DISPLAY=:0
+_=/usr/bin/git-credential-manager
+XDG_MENU_PREFIX=lxqt-
+
+
+------------
+Diagnostic: File system
+Skipped: False
+Success: True
+Exception: None
+Log:
+Temporary directory is '/tmp/'...
+Checking basic file I/O...
+Writing to temporary file '/tmp/44a14b0eb0ba1c6b04d73f38'... OK
+Reading from temporary file '/tmp/44a14b0eb0ba1c6b04d73f38'... OK
+Deleting temporary file '/tmp/44a14b0eb0ba1c6b04d73f38'... OK
+Testing IFileSystem instance...
+UserHomePath: /home/lukron
+UserDataDirectoryPath: /home/lukron/.gcm
+GetCurrentDirectory(): /home/lukron/lukron55.github.io
+
+------------
+Diagnostic: Networking
+Skipped: False
+Success: True
+Exception: None
+Log:
+Checking networking and HTTP stack...
+Creating HTTP client... OK
+IsNetworkAvailable: True
+Sending HEAD request to http://example.com...Sending HEAD request to https://example.com... OK
+ OK
+Acquiring free TCP port... OK
+Testing local HTTP loopback connections...
+Creating new HTTP listener for http://localhost:45993/... OK
+Waiting for loopback connection... OK
+Writing response... OK
+Waiting for response data... OK
+Loopback connection data OK
+
+------------
+Diagnostic: Git
+Skipped: False
+Success: True
+Exception: None
+Log:
+Getting Git version... OK
+Git version is '2.47.1'
+Locating current repository...Git repository at '/home/lukron/lukron55.github.io/.git'
+ OK
+Listing all Git configuration... OK
+Git configuration:
+file:/home/lukron/.gitconfig	user.email=lukron55@outlook.com
+file:/home/lukron/.gitconfig	user.name=lukron55
+file:/home/lukron/.gitconfig	credential.helper=
+file:/home/lukron/.gitconfig	credential.helper=/usr/bin/git-credential-manager
+file:/home/lukron/.gitconfig	credential.crentialstore=secretservice
+file:/home/lukron/.gitconfig	credential.https://dev.azure.com.usehttppath=true
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	remote.origin.url=https://github.com/lukron55/lukron55.github.io
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+file:.git/config	branch.main.remote=origin
+file:.git/config	branch.main.merge=refs/heads/main
+
+
+------------
+Diagnostic: Credential storage
+Skipped: False
+Success: False
+Exception:
+System.Exception: No credential store has been selected.
+
+Set the GCM_CREDENTIAL_STORE environment variable or the credential.credentialStore Git configuration setting to one of the following options:
+
+  secretservice : freedesktop.org Secret Service (requires graphical interface)
+  gpg           : GNU `pass` compatible credential storage (requires GPG and `pass`)
+  cache         : Git's in-memory credential cache
+  plaintext     : store credentials in plain-text files (UNSECURE)
+
+See https://aka.ms/gcm/credstores for more information.
+
+   at GitCredentialManager.CredentialStore.EnsureBackingStore()
+   at GitCredentialManager.CredentialStore.Remove(String service, String account)
+   at GitCredentialManager.Diagnostics.CredentialStoreDiagnostic.RunInternalAsync(StringBuilder log, IList`1 additionalFiles)
+   at GitCredentialManager.Diagnostics.Diagnostic.RunAsync()
+Log:
+ICredentialStore instance is of type: CredentialStore
+Writing test credential...Deleting test credential...
+------------
+Diagnostic: Microsoft authentication (AAD/MSA)
+Skipped: False
+Success: True
+Exception: None
+Log:
+Broker is not enabled.
+Flow type is: Auto
+Gathering MSAL token cache data... OK
+CacheDirectory: /home/lukron/.local/.IdentityService
+CacheFileName: msal.cache
+CacheFilePath: /home/lukron/.local/.IdentityService/msal.cache
+KeyringCollection: 
+KeyringSchemaName: 
+KeyringSecretLabel: 
+KeyringAttribute1: (,)
+KeyringAttribute2: (,)
+Creating cache helper... OK
+Verifying MSAL token cache persistence... OK
+
+------------
+Diagnostic: GitHub API
+Skipped: False
+Success: True
+Exception: None
+Log:
+Using 'https://github.com/' as API target.
+Querying '/meta' endpoint... OK
+

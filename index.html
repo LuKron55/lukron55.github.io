@@ -5,34 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LuKron's Terminal</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      background: linear-gradient(135deg, #1c1c1c, #333333);
+      background-size: 200% 200%;
+      animation: gradientAnimation 10s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .terminal-container {
+      position: absolute;
+      z-index: 10;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .bg-black {
+      background-color: #111;
+    }
+
+    .text-green-400 {
+      color: #00ff00;
+    }
+
+    .text-white {
+      color: #ffffff;
+    }
+
+    .underline {
+      text-decoration: underline;
+    }
+
+    .terminal-container {
+      position: absolute;
+      z-index: 10;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
 </head>
-<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+<body class="bg-gray-900">
 
   <!-- Terminal -->
-  <div class="bg-black text-white p-6 rounded-lg w-full max-w-lg font-mono">
-    <div class="flex justify-between items-center">
-      <div class="flex space-x-2 text-red-500">
-        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+  <div class="terminal-container">
+    <div class="bg-black text-white p-6 rounded-lg w-full max-w-lg font-mono">
+      <div class="flex justify-between items-center">
+        <div class="flex space-x-2 text-red-500">
+          <div class="w-3 h-3 rounded-full bg-red-500"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+          <div class="w-3 h-3 rounded-full bg-green-500"></div>
+        </div>
+        <p class="text-sm">bash</p>
       </div>
-      <p class="text-sm">bash</p>
-    </div>
-    <div id="terminal-output" class="mt-4 overflow-y-auto max-h-96">
-      <!-- Initial prompt -->
-      <p class="text-green-400">$ cat lukron.txt</p>
-      <p class="text-white">Try these commands:</p>
-      <p class="text-white">about, discord, github, mastodon, email, linkedin, clear, help</p>
-    </div>
-    <div class="mt-4">
-      <div class="flex">
-        <span class="text-green-400">$</span>
-        <input
-          id="terminal-input"
-          type="text"
-          placeholder="Type a command..."
-          class="bg-black text-white ml-2 flex-grow outline-none"
-        />
+      <div id="terminal-output" class="mt-4 overflow-y-auto max-h-96">
+        <!-- Initial prompt -->
+        <p class="text-green-400">$ cat lukron.txt</p>
+        <p class="text-white">Try these commands:</p>
+        <p class="text-white">about, discord, github, mastodon, email, linkedin, clear, help</p>
+      </div>
+      <div class="mt-4">
+        <div class="flex">
+          <span class="text-green-400">$</span>
+          <input
+            id="terminal-input"
+            type="text"
+            placeholder="Type a command..."
+            class="bg-black text-white ml-2 flex-grow outline-none"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -105,11 +162,11 @@
               // Handle invalid command
               const responseLine = document.createElement("p");
               responseLine.classList.add("text-white");
-              responseLine.textContent = `Command '${userInput}' not found`;
+              responseLine.textContent = `Command '${userInput}' not found, try typing 'help' for more information.`;
               terminalOutput.appendChild(responseLine);
             }
 
-            // Scroll to the bottom of the terminal
+            // Scroll to the bottom of the terminal output
             terminalOutput.scrollTop = terminalOutput.scrollHeight;
           }
         }

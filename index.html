@@ -171,10 +171,10 @@
                           });
                           // Trigger file download
                           const link = document.createElement("a");
-                          link.href = "path/to/lukron.mp3"; // Replace with actual file path
+                          link.href = "lukron.mp3"; // Replace with actual file path
                           link.download = "lukron.mp3";
                           link.click();
-                      } else if (userInput === "play lukron.mp3") {
+                      } else if (userInput === "mpg123 lukron.mp3") {
                           commands[userInput].forEach((line) => {
                               const responseLine = document.createElement("p");
                               responseLine.classList.add("text-white");

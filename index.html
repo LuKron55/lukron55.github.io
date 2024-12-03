@@ -96,123 +96,143 @@
 
 <!-- Add this in your JavaScript section -->
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-      const terminalOutput = document.getElementById("terminal-output");
-      const terminalInput = document.getElementById("terminal-input");
+document.addEventListener("DOMContentLoaded", () => {
+    const terminalOutput = document.getElementById("terminal-output");
+    const terminalInput = document.getElementById("terminal-input");
 
-      // Commands and their outputs
-      const commands = {
-          "cat lukron.txt": [
-              "Try these commands:",
-              "about, discord, github, mastodon, email, linkedin, clear, help, curl lukron.mp3, play lukron.mp3"
-          ],
-          about: [
-              "Hi! I'm Lucas Marsh, a tech enthusiast with a passion for creating interactive web experiences and coding projects."
-          ],
-          discord: [
-              "Join my Discord server: ",
-              "<a href='https://discord.gg/lukron' target='_blank' class='underline'>https://discord.gg/lukron</a>"
-          ],
-          github: [
-              "Check out my GitHub: ",
-              "<a href='https://github.com/lukron55' target='_blank' class='underline'>https://github.com/lukron55</a>"
-          ],
-          mastodon: [
-              "Find me on Mastodon: ",
-              "<a href='https://mastodon.social/@lukron' target='_blank' class='underline'>https://mastodon.social/@lukron</a>"
-          ],
-          email: [
-              "Email me at: ",
-              "<a href='mailto:lucas@lukron.xyz' class='underline'>lucas@lukron.xyz</a>"
-          ],
-          linkedin: [
-              "Connect with me on LinkedIn: ",
-              "<a href='https://linkedin.com/in/lucascmarsh' target='_blank' class='underline'>https://linkedin.com/in/lucascmarsh</a>"
-          ],
-          "curl lukron.mp3": [
-              "Downloading 'lukron.mp3'...",
-          ],
-          "mpg123 lukron.mp3": [
-              "Playing 'lukron.mp3'...",
-          ],
-          clear: [],
-          help: [
-              "Try running 'cat lukron.txt'"
-          ]
-      };
+    // Commands and their outputs
+    const commands = {
+        "cat lukron.txt": [
+            "Try these commands:",
+            "about, discord, github, mastodon, email, linkedin, clear, help, curl lukron.mp3, play lukron.mp3"
+        ],
+        about: [
+            "Hi! I'm Lucas Marsh, a tech enthusiast with a passion for creating interactive web experiences and coding projects."
+        ],
+        discord: [
+            "Join my Discord server: ",
+            "<a href='https://discord.gg/lukron' target='_blank' class='underline'>https://discord.gg/lukron</a>"
+        ],
+        github: [
+            "Check out my GitHub: ",
+            "<a href='https://github.com/lukron55' target='_blank' class='underline'>https://github.com/lukron55</a>"
+        ],
+        mastodon: [
+            "Find me on Mastodon: ",
+            "<a href='https://mastodon.social/@lukron' target='_blank' class='underline'>https://mastodon.social/@lukron</a>"
+        ],
+        email: [
+            "Email me at: ",
+            "<a href='mailto:lucas@lukron.xyz' class='underline'>lucas@lukron.xyz</a>"
+        ],
+        linkedin: [
+            "Connect with me on LinkedIn: ",
+            "<a href='https://linkedin.com/in/lucascmarsh' target='_blank' class='underline'>https://linkedin.com/in/lucascmarsh</a>"
+        ],
+        "curl lukron.mp3": [
+            "Downloading 'lukron.mp3'...",
+        ],
+        "mpg123 lukron.mp3": [
+            "Playing 'lukron.mp3'...",
+        ],
+        clear: [],
+        help: [
+            "Try running 'cat lukron.txt'"
+        ]
+    };
 
-      // Create an audio element for playback
-      const audio = document.createElement("audio");
-      audio.src = "lukron.mp3"; // Replace with the actual file path
-      audio.id = "audio-player";
+    // Command history
+    let history = [];
+    let historyIndex = -1;
 
-      terminalInput.addEventListener("keydown", (e) => {
-          if (e.key === "Enter") {
-              const userInput = terminalInput.value.trim();
-              terminalInput.value = ""; // Clear the input field
+    // Create an audio element for playback
+    const audio = document.createElement("audio");
+    audio.src = "lukron.mp3"; // Replace with the actual file path
+    audio.id = "audio-player";
 
-              if (userInput) {
-                  // Add the user input to the terminal output
-                  const userLine = document.createElement("p");
-                  userLine.classList.add("text-green-400");
-                  userLine.textContent = `$ ${userInput}`;
-                  terminalOutput.appendChild(userLine);
+    terminalInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            const userInput = terminalInput.value.trim();
+            terminalInput.value = ""; // Clear the input field
 
-                  // Handle valid commands
-                  if (commands[userInput]) {
-                      if (userInput === "clear") {
-                          terminalOutput.innerHTML = ""; // Clear all terminal content
-                      } else if (userInput === "curl lukron.mp3") {
-                          commands[userInput].forEach((line) => {
-                              const responseLine = document.createElement("p");
-                              responseLine.classList.add("text-white");
-                              responseLine.textContent = line;
-                              terminalOutput.appendChild(responseLine);
-                          });
-                          // Trigger file download
-                          const link = document.createElement("a");
-                          link.href = "lukron.mp3"; // Replace with actual file path
-                          link.download = "lukron.mp3";
-                          link.click();
-                      } else if (userInput === "mpg123 lukron.mp3") {
-                          commands[userInput].forEach((line) => {
-                              const responseLine = document.createElement("p");
-                              responseLine.classList.add("text-white");
-                              responseLine.textContent = line;
-                              terminalOutput.appendChild(responseLine);
-                          });
-                          // Play the audio
-                          audio.play().catch((error) => {
-                              const errorLine = document.createElement("p");
-                              errorLine.classList.add("text-red-500");
-                              errorLine.textContent = "Error playing audio: " + error.message;
-                              terminalOutput.appendChild(errorLine);
-                          });
-                      } else {
-                          commands[userInput].forEach((line) => {
-                              const responseLine = document.createElement("p");
-                              responseLine.classList.add("text-white");
-                              responseLine.innerHTML = line; // Use innerHTML for clickable links
-                              terminalOutput.appendChild(responseLine);
-                          });
-                      }
-                  } else {
-                      // Handle invalid command
-                      const responseLine = document.createElement("p");
-                      responseLine.classList.add("text-white");
-                      responseLine.textContent = `Command '${userInput}' not found, try typing 'help' for more information.`;
-                      terminalOutput.appendChild(responseLine);
-                  }
+            if (userInput) {
+                // Add to command history and reset index
+                history.push(userInput);
+                historyIndex = history.length;
 
-                  // Scroll to the bottom of the terminal output
-                  terminalOutput.scrollTop = terminalOutput.scrollHeight;
-              }
-          }
-      });
-  });
+                // Add the user input to the terminal output
+                const userLine = document.createElement("p");
+                userLine.classList.add("text-green-400");
+                userLine.textContent = `$ ${userInput}`;
+                terminalOutput.appendChild(userLine);
+
+                // Handle valid commands
+                if (commands[userInput]) {
+                    if (userInput === "clear") {
+                        terminalOutput.innerHTML = ""; // Clear all terminal content
+                    } else if (userInput === "curl lukron.mp3") {
+                        commands[userInput].forEach((line) => {
+                            const responseLine = document.createElement("p");
+                            responseLine.classList.add("text-white");
+                            responseLine.textContent = line;
+                            terminalOutput.appendChild(responseLine);
+                        });
+                        // Trigger file download
+                        const link = document.createElement("a");
+                        link.href = "lukron.mp3"; // Replace with actual file path
+                        link.download = "lukron.mp3";
+                        link.click();
+                    } else if (userInput === "mpg123 lukron.mp3") {
+                        commands[userInput].forEach((line) => {
+                            const responseLine = document.createElement("p");
+                            responseLine.classList.add("text-white");
+                            responseLine.textContent = line;
+                            terminalOutput.appendChild(responseLine);
+                        });
+                        // Play the audio
+                        audio.play().catch((error) => {
+                            const errorLine = document.createElement("p");
+                            errorLine.classList.add("text-red-500");
+                            errorLine.textContent = "Error playing audio: " + error.message;
+                            terminalOutput.appendChild(errorLine);
+                        });
+                    } else {
+                        commands[userInput].forEach((line) => {
+                            const responseLine = document.createElement("p");
+                            responseLine.classList.add("text-white");
+                            responseLine.innerHTML = line; // Use innerHTML for clickable links
+                            terminalOutput.appendChild(responseLine);
+                        });
+                    }
+                } else {
+                    // Handle invalid command
+                    const responseLine = document.createElement("p");
+                    responseLine.classList.add("text-white");
+                    responseLine.textContent = `Command '${userInput}' not found, try typing 'help' for more information.`;
+                    terminalOutput.appendChild(responseLine);
+                }
+
+                // Scroll to the bottom of the terminal output
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            }
+        } else if (e.key === "ArrowUp") {
+            // Navigate history backwards
+            if (historyIndex > 0) {
+                historyIndex--;
+                terminalInput.value = history[historyIndex];
+            }
+        } else if (e.key === "ArrowDown") {
+            // Navigate history forwards
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                terminalInput.value = history[historyIndex];
+            } else {
+                historyIndex = history.length;
+                terminalInput.value = "";
+            }
+        }
+    });
+});
 </script>
-
-
-
 </body>
 </html>
